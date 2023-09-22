@@ -150,10 +150,6 @@ local function MakeUi(applicationName, name, info, discordInvite)
     close_btn.Name = "CloseBtn"
     close_btn.Parent = top_frame
     
-    local uicorner_2 = Instance.new("UICorner")
-    uicorner_2.CornerRadius = UDim.new(0, 5)
-    uicorner_2.Parent = close_btn
-    
     local clear = Instance.new("ImageButton")
     clear.Image = "rbxassetid://3926305904"
     clear.ImageColor3 = Color3.new(0.619608, 0.619608, 0.619608)
@@ -343,13 +339,13 @@ local function MakeUi(applicationName, name, info, discordInvite)
 	            local is_key_present = isfile(SavedKeyPath);
 	
 	            if is_key_present == true then
-	            	Notif.New("Checking saved key...", 2)
+	            	Notif.New("Checking key...", 2)
 
 	                local key_file_txt = readfile(SavedKeyPath)
 	                local onl_key = iskeyvalid(key_file_txt)
 	                
 	                if onl_key then
-	                	Notif.New("Saved key is valid! Loading "..tostring(name).."...", 2)
+	                	Notif.New("Correct key! Loading "..tostring(name).."...", 2)
 	                    CloseGUI()
 	                else
 	                    delfile(SavedKeyPath)
@@ -367,20 +363,22 @@ local function MakeUi(applicationName, name, info, discordInvite)
 	        local keyValid = iskeyvalid(text_box.Text)
 	        if keyValid then
 	            if writefile then writefile(SavedKeyPath, CurrentKeyInput) end
-	            Notif.New("Key is valid! Loading "..tostring(name).."...", 5)
+	            Notif.New("Correct key! Loading "..tostring(name).."...", 5)
 	            CloseGUI()
 	        else
 				if KeyClass.is_banned then 
 					Notif.New("You are banned!", 5)
 				else 
-					Notif.New("Invalid/Expired key!", 2)
+					Notif.New("Incorrect/Expired key!", 2)
 				end
 	            text_box.Text = ""
 	        end
 	    end)
 	
 	    get_key.MouseButton1Click:Connect(function()
+	        text_box.Text = KeySystem:getKeyURL()
 	        KeySystem:copyGetKeyURL()
+            Notif.New("Copied Key URL", 5)
 	    end)
    	end
 end
