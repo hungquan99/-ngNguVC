@@ -1,5 +1,4 @@
 
-
 local KeySystemUI = { Closed = false }
 local UIMade = false;
 
@@ -381,7 +380,6 @@ local function MakeUi(applicationName, name, info, discordInvite)
 	    end)
 	
 	    get_key.MouseButton1Click:Connect(function()
-	        text_box.Text = KeySystem:getKeyURL()
 	        KeySystem:copyGetKeyURL()
 	    end)
    	end
